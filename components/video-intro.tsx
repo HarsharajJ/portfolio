@@ -39,8 +39,7 @@ export function VideoIntro({ onComplete }: VideoIntroProps) {
 
     const checkVideoAndPlay = async () => {
       try {
-        // For autoplay to work across browsers, try playing muted first.
-        // Unmuting without user interaction is often blocked by browser policies.
+        // Ensure muted autoplay (supported by browsers)
         video.muted = true
         video.volume = 0.8
         await video.play()
@@ -95,11 +94,14 @@ export function VideoIntro({ onComplete }: VideoIntroProps) {
       <video
         ref={videoRef}
         className="max-w-full max-h-full object-contain"
+        autoPlay
         muted
         playsInline
         preload="auto"
+        poster="/placeholder.jpg"
+        style={{ display: videoLoaded ? "block" : "none" }}
       >
-        <source src="/intro-video.mp4" type="video/mp4" />
+        <source src="/intro-video.MP4" type="video/mp4" />
         <source src="/intro-video.webm" type="video/webm" />
         Your browser does not support the video tag.
       </video>

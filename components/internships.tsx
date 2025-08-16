@@ -101,7 +101,7 @@ export function Internships() {
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <Badge className="bg-primary/20 text-primary border-primary/30">Selected</Badge>
+                <Badge className="bg-primary/20 text-primary border-primary/30">Completed</Badge>
 
                 <div className="space-y-3">
                   <p className="text-card-foreground">

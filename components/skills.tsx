@@ -12,7 +12,7 @@ export function Skills() {
     {
       title: "Databases",
       icon: Database,
-      skills: ["MySQL","ChromaDB","PostgreSQL", "FAISS"],
+      skills: ["MySQL"],
     },
     {
       title: "Tools & Platforms",

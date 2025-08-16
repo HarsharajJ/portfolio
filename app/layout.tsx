@@ -24,15 +24,7 @@ export const metadata: Metadata = {
   keywords: "Harsharaj, AI Engineer, Data Science, Machine Learning, Deep Learning, Portfolio",
   authors: [{ name: "Harsharaj" }],
   creator: "Harsharaj",
-    generator: 'v0.app',
-  icons: {
-    icon: [
-      { url: '/placeholder-logo.png' },
-      { url: '/placeholder-logo.svg', type: 'image/svg+xml' }
-    ],
-    shortcut: '/placeholder-logo.png',
-    apple: '/placeholder-logo.png'
-  }
+    generator: 'v0.app'
 }
 
 export default function RootLayout({

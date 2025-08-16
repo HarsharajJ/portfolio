@@ -10,7 +10,7 @@ export function Certificates() {
       title: "The AI Engineer Course",
       issuer: "Udemy",
       date: "2025",
-      image: "certificates/ai-engineer-course.jpg",
+      image: "/certificates/ai-engineer-course.jpg",
     },
     {
       title: "Lab: Retrieval Augmented Generation with LangChain",
@@ -49,10 +49,10 @@ export function Certificates() {
       image: "/certificates/html-essential.png",
     },
     {
-      title: "Introduction to PowerBI & MS Excel",
-      issuer: "Various",
+      title: "DevHost Hackathon Certificate of Participation",
+      issuer: "SOSC, Niveus",
       date: "2024",
-      image: "/certificates/powerbi-excel.png",
+      image: "/certificates/hack.jpeg",
     },
     {
       title: "Data Science & Machine Learning Workshop",
