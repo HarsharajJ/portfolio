@@ -9,6 +9,8 @@ interface VideoIntroProps {
 export function VideoIntro({ onComplete }: VideoIntroProps) {
   const [isVisible, setIsVisible] = useState(true)
   const [videoLoaded, setVideoLoaded] = useState(false)
+  const [autoplayFailed, setAutoplayFailed] = useState(false)
+  const [videoSrc, setVideoSrc] = useState("/intro-video.mp4")
   const videoRef = useRef<HTMLVideoElement>(null)
 
   useEffect(() => {
@@ -37,22 +39,52 @@ export function VideoIntro({ onComplete }: VideoIntroProps) {
     video.addEventListener("error", handleVideoError)
     video.addEventListener("loadeddata", handleVideoLoaded)
 
-    const checkVideoAndPlay = async () => {
+    let cancelled = false
+
+    const findValidSourceAndPlay = async () => {
+      // Try common case-insensitive variants (deployments are case-sensitive)
+      const candidates = ["/intro-video.mp4", "/intro-video.MP4", "/intro-video.webm"]
+
+      let found: string | null = null
+      for (const candidate of candidates) {
+        try {
+          const res = await fetch(candidate, { method: "HEAD" })
+          if (res.ok) {
+            found = candidate
+            break
+          }
+        } catch (e) {
+          // ignore network errors for HEAD
+        }
+      }
+
+      if (cancelled) return
+
+      if (!found) {
+        console.log("[v0] No video source found; skipping intro")
+        handleVideoEnd()
+        return
+      }
+
+      setVideoSrc(found)
+
       try {
-        // Ensure muted autoplay (supported by browsers)
+        // Attempt muted autoplay (allowed by most browsers)
         video.muted = true
         video.volume = 0.8
         await video.play()
         console.log("[v0] Video playing (muted for autoplay)")
       } catch (error) {
-        console.log("[v0] Autoplay failed or video not found, skipping intro")
-        handleVideoEnd()
+        console.log("[v0] Autoplay blocked or other error; showing Play CTA")
+        // Don't skip the intro; show a manual play CTA instead
+        setAutoplayFailed(true)
       }
     }
 
-    setTimeout(checkVideoAndPlay, 100)
+    setTimeout(findValidSourceAndPlay, 100)
 
     return () => {
+      cancelled = true
       if (video) {
         video.pause()
         video.currentTime = 0
@@ -74,6 +106,19 @@ export function VideoIntro({ onComplete }: VideoIntroProps) {
     }
     setIsVisible(false)
     setTimeout(onComplete, 500)
+  }
+
+  const handleManualPlay = async (unmute = true) => {
+    const video = videoRef.current
+    if (!video) return
+    try {
+      if (unmute) video.muted = false
+      await video.play()
+      setAutoplayFailed(false)
+      console.log("[v0] Manual play started")
+    } catch (e) {
+      console.log("[v0] Manual play failed", e)
+    }
   }
 
   if (!isVisible) return null
@@ -99,12 +144,23 @@ export function VideoIntro({ onComplete }: VideoIntroProps) {
         playsInline
         preload="auto"
         poster="/placeholder.jpg"
-        style={{ display: videoLoaded ? "block" : "none" }}
+        style={{ display: videoLoaded || autoplayFailed ? "block" : "none" }}
       >
-        <source src="/intro-video.MP4" type="video/mp4" />
-        <source src="/intro-video.webm" type="video/webm" />
+        <source src={videoSrc} />
         Your browser does not support the video tag.
       </video>
+
+      {/* Manual Play CTA when autoplay is blocked (common on deployed sites) */}
+      {autoplayFailed && (
+        <div className="absolute inset-0 flex items-center justify-center z-20">
+          <button
+            onClick={() => handleManualPlay(true)}
+            className="px-6 py-3 bg-red-600 text-white rounded-md text-lg shadow-lg"
+          >
+            Play Intro
+          </button>
+        </div>
+      )}
 
       <button
         onClick={handleSkip}
