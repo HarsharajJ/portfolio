@@ -1,0 +1,11 @@
+# Video files for intro
+# Place your intro video here as:
+# - intro-video.mp4 (recommended format)
+# - intro-video.webm (fallback format)
+#
+# Video should be less than 10 seconds for best user experience
+# Recommended specs:
+# - Duration: 5-10 seconds
+# - Resolution: 1920x1080 or 1280x720
+# - Format: MP4 (H.264) for best compatibility
+# - File size: Keep under 5MB for fast loading

@@ -1,0 +1,348 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Updated to clean red and black theme without glowing effects */
+  --background: #000000;
+  --foreground: #ffffff;
+  --card: #1a1a1a;
+  --card-foreground: #ffffff;
+  --popover: #000000;
+  --popover-foreground: #ffffff;
+  --primary: #dc2626;
+  --primary-foreground: #ffffff;
+  --secondary: #ef4444;
+  --secondary-foreground: #ffffff;
+  --muted: #262626;
+  --muted-foreground: #d1d5db;
+  --accent: #ef4444;
+  --accent-foreground: #ffffff;
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+  --border: #404040;
+  --input: #1a1a1a;
+  --ring: rgba(220, 38, 38, 0.3);
+  --chart-1: #dc2626;
+  --chart-2: #ef4444;
+  --chart-3: #1a1a1a;
+  --chart-4: #000000;
+  --chart-5: #ffffff;
+  --radius: 0.5rem;
+  --sidebar: #1a1a1a;
+  --sidebar-foreground: #ffffff;
+  --sidebar-primary: #dc2626;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #ef4444;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: #404040;
+  --sidebar-ring: rgba(220, 38, 38, 0.3);
+  --font-inter: "Inter", sans-serif;
+  --font-poppins: "Poppins", serif;
+}
+
+.dark {
+  --background: #000000;
+  --foreground: #ffffff;
+  --card: #1a1a1a;
+  --card-foreground: #ffffff;
+  --popover: #000000;
+  --popover-foreground: #ffffff;
+  --primary: #dc2626;
+  --primary-foreground: #ffffff;
+  --secondary: #ef4444;
+  --secondary-foreground: #ffffff;
+  --muted: #262626;
+  --muted-foreground: #d1d5db;
+  --accent: #ef4444;
+  --accent-foreground: #ffffff;
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+  --border: #404040;
+  --input: #1a1a1a;
+  --ring: rgba(220, 38, 38, 0.3);
+  --chart-1: #dc2626;
+  --chart-2: #ef4444;
+  --chart-3: #1a1a1a;
+  --chart-4: #000000;
+  --chart-5: #ffffff;
+  --sidebar: #1a1a1a;
+  --sidebar-foreground: #ffffff;
+  --sidebar-primary: #dc2626;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #ef4444;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: #404040;
+  --sidebar-ring: rgba(220, 38, 38, 0.3);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-poppins);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+  }
+}
+
+/* Smooth scrolling for navigation */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom animations and glowing effects */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes cardHover {
+  from {
+    transform: translateY(0) scale(1);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+  to {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 25px -5px rgba(220, 38, 38, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* Updated page transition animations to be smoother and more pleasant */
+@keyframes pageTransition {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes mobilePageTransition {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 1s ease-out;
+}
+
+.slide-in-up {
+  animation: slideInUp 0.8s ease-out;
+  animation-fill-mode: both;
+}
+
+.slide-in-left {
+  animation: slideInLeft 0.8s ease-out;
+  animation-fill-mode: both;
+}
+
+.slide-in-right {
+  animation: slideInRight 0.8s ease-out;
+  animation-fill-mode: both;
+}
+
+.slide-in-up:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.slide-in-up:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.slide-in-up:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.slide-in-up:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+.hover-lift {
+  transition: all 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px -5px rgba(220, 38, 38, 0.2);
+}
+
+.card-hover {
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  animation: cardHover 0.3s ease forwards;
+}
+
+/* Enhanced page transition for mobile */
+.page-transition {
+  animation: pageTransition 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (max-width: 768px) {
+  .page-transition {
+    animation: mobilePageTransition 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+/* Custom scrollbar with red theme */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-secondary);
+}
+
+/* Added tile transition animations and mobile-responsive styles */
+.tile {
+  @apply w-full h-full;
+}
+
+@keyframes tileReveal {
+  0% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1) rotate(5deg);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(0) rotate(45deg);
+    opacity: 0;
+  }
+}
+
+.tile-animate {
+  animation: tileReveal 0.6s ease-in-out forwards;
+}
+
+/* Enhanced mobile responsiveness */
+@media (max-width: 768px) {
+  .slide-in-up,
+  .slide-in-left,
+  .slide-in-right {
+    animation-duration: 0.6s;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-2px);
+  }
+
+  .card-hover:hover {
+    transform: translateY(-2px) scale(1.01);
+  }
+}
+
+/* Added smooth mobile menu animations */
+@keyframes mobileMenuSlide {
+  from {
+    transform: translateX(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.mobile-menu-item {
+  animation: mobileMenuSlide 0.3s ease-out forwards;
+}
