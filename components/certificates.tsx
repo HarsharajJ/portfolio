@@ -13,6 +13,12 @@ export function Certificates() {
       image: "/certificates/ai-engineer-course.jpg",
     },
     {
+      title: "4-week Internship, leveraging SkillsBuild & IBM Cloud Platform in Emerging Technologies (AI & Cloud)",
+      issuer: "IBM SkillsBuild & Edunet Foundation",
+      date: "2025",
+      image: "/certificates/ibmintern.png",
+    },
+    {
       title: "Lab: Retrieval Augmented Generation with LangChain",
       issuer: "IBM SkillsBuild",
       date: "July 18, 2025",

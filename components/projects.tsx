@@ -12,7 +12,7 @@ export function Projects() {
       title: "Shri Mandarathi — Full-Stack E-commerce Platform",
       date: "2024",
       description:
-        "Full-stack e-commerce application built with Next.js frontend and Node.js/Express TypeScript backend. Features product catalog with variants, user authentication (JWT), cart management, orders, addresses, and image uploads with Cloudinary integration. Includes role-based access control for admin and customer roles.",
+        "Full-stack e-commerce application built with Next.js frontend and Node.js/Express TypeScript backend. Features product catalog with variants, user authentication (JWT), cart management, orders, addresses, and image uploads with Cloudinary integration. Includes role-based access control for admin and customer roles. LiveUrl: https://shri-mandarathi-products.vercel.app/",
       technologies: [
         "Next.js",
         "React 19",
@@ -25,8 +25,8 @@ export function Projects() {
         "Cloudinary",
         "Tailwind CSS",
       ],
-      liveUrl: "#",
-      githubUrl: "#",
+      liveUrl: "https://shri-mandarathi-products.vercel.app/",
+      githubUrl: "https://github.com/HarsharajJ/shri_mandarathi1.git",
       featured: true,
       image: "/projects/commerce-platform.png",
     },
